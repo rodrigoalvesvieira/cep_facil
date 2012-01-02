@@ -47,6 +47,11 @@ AUTHOR
 
 * Rodrigo Vieira - rodrigovieira1994@gmail.com - http://www.rodrigoalvesvieira.com
 
+THANKS
+-------
+
+Huge thanks and cheers to CépFácil (http://cepfacil.com.br) of course. Thanks for the great service that you provide!
+
 LICENCE
 -------
 
