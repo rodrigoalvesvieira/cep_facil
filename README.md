@@ -14,7 +14,7 @@ gem `cep_facil`
 
 Or via RubyGems, directly:
 
-  gem install cep_facil
+  `gem install cep_facil`
   
 
 Usage
