@@ -9,9 +9,7 @@ Installation
 In the `Gemfile`
 
 ```ruby
-
 gem `cep_facil`
-
 ```
 
 Or via RubyGems, directly:
