@@ -3,21 +3,21 @@ require "cep_facil/version"
 require "net/http"
 
 module CepFacil
-  
-  # Recebe o CEP e o Token (obtenha o seu em http://cepfacil.com.br) e 
-  # retorna o endereço reference ao CEP passado. 
+
+  # Receives the zip code (CEP) and the Token (get yours at http://cepfacil.com.br) and
+  # returns the address referent to that zip code as a hash object.
   #
   # == Exemplo 
   # require "cep_facil"
   # cep = "5417-540"
   # token = "1234567890"
-  # CepFacil.get_address(cep, token)
-  # Retorna o endereço daquele cep em forma de Hash.
-  # Esse hash tem 6 chaves: cep, type, state, city, neighborhood, description
-  
-  # Algumas pessoas guardam o CEP na forma "22222222", outras como "22222-222"
-  # outras até como inteiro.
-  # O método CepFacil.get_address aceita as três formas.
+  # address = CepFacil.get_address(cep, token)
+  # address is a hash with 6 keys: cep, type, state, city, neighborhood, description
+  # Reading them: 
+  # address[:city]
+  # address[:state]
+  # Some applications store Brazilian zip codes (CEPs) in formats like "22222222", or "22222-222"
+  # or even as an integer. This method accept these three possible formats so you don´t need to format it yourself.
   
   def self.get_address(zip_code, token)
     zip_code = zip_code.to_s
