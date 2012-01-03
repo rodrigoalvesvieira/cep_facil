@@ -3,7 +3,7 @@ CepFácil
 
 Wrapper Ruby for the service at cepfacil.com.br
 
-INSTALLATION
+Installation
 ------------
 
 In the `Gemfile`
@@ -17,7 +17,7 @@ Or via RubyGems, directly:
   `gem install cep_facil`
   
 
-USAGE
+Usage
 -----
 
 ```ruby
@@ -40,17 +40,17 @@ There are three formats for one to store Brazilian zip codes (CEPS):
 
 CepFácil works with the three of them.
 
-AUTHOR
+Author
 ------
 
 * Rodrigo Vieira - rodrigovieira1994@gmail.com - http://www.rodrigoalvesvieira.com
 
-THANKS
+Thanks
 -------
 
 Huge thanks and cheers to CépFácil (http://cepfacil.com.br) of course. Thanks for the great service that you provide!
 
-LICENCE
+Licence
 -------
 
 Copyright (c) 2012 Rodrigo Vieira. http://www.rodrigoalvesvieira.com/
