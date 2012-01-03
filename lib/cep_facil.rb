@@ -54,4 +54,14 @@ module CepFacil
     }
   
   end
+  
+  # Receives and address hash and returns its extense version
+  # = Example
+  # address = CepFacil.get_address "53417-540", "1234456677886545"
+  # CepFacil.full address
+  # => Rua Panelas, Artur Lundgren II, Paulista-PE, Brasil.
+  
+  def self.full(address)
+    "#{address[:type]} #{address[:description]}, #{address[:neighborhood]}, #{address[:city]}-#{address[:state]}, Brasil."
+  end
 end
