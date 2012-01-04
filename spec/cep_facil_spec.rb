@@ -65,6 +65,23 @@ describe CepFacil do
     full_version.should_not be_nil
     full_version.should eql("Rua Panelas, Artur Lundgren II, Paulista-PE, Brasil.")
   end
-  
+
+=begin  
+  it "has a working alternative usage" do
+    include CepFacil
+    a = RSpec::Core::ExampleGroup.new
+    a.extend(CepFacil)
+    
+    cep = "50050-000"
+    address = get_address cep, @token
+    full_version = full address
+    
+    address.should_not be_nil
+    full_version.should_not be_nil
+    
+    full_version.should eql("Rua da Aurora, Boa Vista, Recife-PE, Brasil.")
+  end
+=end
+
 end
 
