@@ -19,26 +19,55 @@ Or via RubyGems, directly:
 
 Usage
 -----
+  
+### Fetching an address by zip code
 
 ```ruby
 require "cep_facil"
-cep = "5417-540"
+cep = "53417-540"
 token = "1234567890" # get yours at cepfacil.com.br
-result = CepFacil.get_address(cep, token)
+address = CepFacil.get_address(cep, token)
 # Returns the address referent to that zip code.
-result[:city]
+address[:city]
 # Returns the city referent to that zip code.
+```
+
+Alternatively, you can do:
+
+```ruby
+require "cep_facil"
+include CepFacil
+address = get_address cep, token
 ```
 
 The response is a Hash object that contains 6 keys: cep, type, state, city, neighborhood, description.
 
-There are three formats for one to store Brazilian zip codes (CEPS):
+There are three formats for one to store Brazilian zip codes (CEPs):
 
-* "12345-678"
-* "12345678"
-* 12345678 # I wouldn't use this one, really.
+```ruby
+"12345-678"
+"12345678"
+12345678   # I wouldn't use this one, really.
+```
 
 CepFácil works with the three of them.
+
+### Displaying an address in full mode
+
+```ruby
+address = CepFacil.get_address(cep, token)
+CepFacil.full address
+```
+
+Or:
+
+````ruby
+require "cep_facil"
+include CepFacil
+
+address = get_address("50050-000", token)
+full(address) # => Rua da Aurora, Boa Vista, Recife-PE, Brasil.
+```
 
 Author
 ------
