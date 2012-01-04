@@ -55,12 +55,12 @@ module CepFacil
     description = result[6].gsub!(pattern, "")
     
     address = {
-      cep: zip_code,
-      type: type,
-      state: state,
-      city: city,
-      neighborhood: neighborhood,
-      description: description
+      :cep => zip_code,
+      :type => type,
+      :state => state,
+      :city => city,
+      :neighborhood => neighborhood,
+      :description => description
     }
   
   end
