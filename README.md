@@ -16,8 +16,7 @@ Or via RubyGems, directly:
 
   `gem install cep_facil`
   
-CepFacil works only in Ruby 1.9.2 by default. If you need it to work with 1.8.7
-and JRuby, for example, you must do the following:
+CepFacil works only in Ruby 1.9.2 by default. If you need it to work with 1.8.7 you must do the following:
 
 In the `Gemfile`
 
