@@ -15,7 +15,7 @@ gem "cep_facil"
 Or via RubyGems, directly:
 
   `gem install cep_facil`
-  
+
 CepFacil works only in Ruby 1.9.2 by default. If you need it to work with 1.8.7 you must do the following:
 
 In the `Gemfile`
@@ -26,7 +26,7 @@ gem "cep_facil", :git => "git://github.com/rodrigoalvesvieira/cep_facil.git", :b
 
 Usage
 -----
-  
+
 ### Fetching an address by zip code
 
 ```ruby
@@ -81,10 +81,17 @@ Author
 
 * Rodrigo Vieira - rodrigovieira1994@gmail.com - http://www.rodrigoalvesvieira.com
 
+Contributors
+------------
+
+* Adriano Bacha - abacha@gmail.com
+
 Thanks
 -------
 
 Huge thanks and cheers to CépFácil (http://cepfacil.com.br) of course. Thanks for the great service that you provide!
+
+Also, thanks to the [Contributors] of this project.
 
 Licence
 -------
@@ -93,7 +100,7 @@ Copyright (c) 2012 Rodrigo Vieira. http://www.rodrigoalvesvieira.com/
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
-"Software"), to use, copy and modify copies of the Software, subject 
+"Software"), to use, copy and modify copies of the Software, subject
 to the following conditions:
 
 The above copyright notice and this permission notice shall be
@@ -106,3 +113,5 @@ NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
 LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+[Contributors]: #ontributors
