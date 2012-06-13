@@ -5,8 +5,8 @@ require "cep_facil/version"
 Gem::Specification.new do |s|
   s.name        = "cep_facil"
   s.version     = CepFacil::VERSION
-  s.authors     = ["Rodrigo Vieira"]
-  s.email       = ["rodrigo@atela.com.br"]
+  s.authors     = ["Rodrigo Alves Vieira"]
+  s.email       = ["rodrigovieira1994@gmail.com"]
   s.homepage    = "https://github.com/rodrigoalvesvieira/cep_facil"
   s.summary     = %q{Wrapper para o serviço cepfacil.com.br}
   s.description = %q{Wrapper Ruby para o serviço cepfacil.com.br}
