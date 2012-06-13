@@ -66,6 +66,13 @@ describe CepFacil do
     full_version.should eql("Rua Panelas, Artur Lundgren II, Paulista-PE, Brasil.")
   end
 
+  it "handles correct encoding" do
+    cep = "79005-340"
+    address = CepFacil.get_address cep, @token
+    address[:neighborhood].should eql("Amambaí")
+    address[:description].should eql("Coronel Camisão")
+  end
+
 =begin  
   it "has a working alternative usage" do
     include CepFacil

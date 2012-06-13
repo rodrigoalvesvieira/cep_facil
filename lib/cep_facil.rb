@@ -1,4 +1,5 @@
 # coding: utf-8
+require "cgi"
 require "cep_facil/version"
 require "net/http"
 
@@ -42,27 +43,16 @@ module CepFacil
     http = Net::HTTP.new(@uri.host, @uri.port)
     call = Net::HTTP::Get.new(@uri.request_uri)
     
-    response = http.request(call)
-    response.body
-    
-    pattern = /^([a-z]+)\=/
-    result = response.body.split("&")
-    
-    type = result[2].gsub!(pattern, "")
-    state = result[3].gsub!(pattern, "")
-    city = result[4].gsub!(pattern, "")
-    neighborhood = result[5].gsub!(pattern, "")
-    description = result[6].gsub!(pattern, "")
-    
-    address = {
-      cep: zip_code,
-      type: type,
-      state: state,
-      city: city,
-      neighborhood: neighborhood,
-      description: description
+    dictionary = {
+      "tipo" => :type,
+      "cidade" => :city,
+      "bairro" => :neighborhood,
+      "cep" => :cep,
+      "descricao" => :description,
+      "uf" => :state
     }
-  
+    response = http.request(call)
+    address = Hash[* CGI::parse(response.body).map {|key, value| [dictionary[key],value[0]]}.flatten]
   end
   
   # Receives and address hash and returns its extense version
