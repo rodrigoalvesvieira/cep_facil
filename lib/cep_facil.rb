@@ -30,7 +30,16 @@ module CepFacil
   # Some applications store Brazilian zip codes (CEPs) in formats like "22222222", or "22222-222"
   # or even as an integer. This method accept these three possible formats so you don´t need to format it yourself.
   
-  def get_address(zip_code, token)
+  def get_address(zip_code, token, dictionary = {})
+    dictionary = {
+      "tipo" => :type,
+      "cidade" => :city,
+      "bairro" => :neighborhood,
+      "cep" => :cep,
+      "descricao" => :description,
+      "uf" => :state
+    }.merge(dictionary)
+
     zip_code = zip_code.to_s
     
     if zip_code.match(/^[0-9]{5}[-]?[0-9]{3}/)
@@ -43,14 +52,6 @@ module CepFacil
     http = Net::HTTP.new(@uri.host, @uri.port)
     call = Net::HTTP::Get.new(@uri.request_uri)
     
-    dictionary = {
-      "tipo" => :type,
-      "cidade" => :city,
-      "bairro" => :neighborhood,
-      "cep" => :cep,
-      "descricao" => :description,
-      "uf" => :state
-    }
     response = http.request(call)
     address = Hash[* CGI::parse(response.body).map {|key, value| [dictionary[key],value[0]]}.flatten]
   end

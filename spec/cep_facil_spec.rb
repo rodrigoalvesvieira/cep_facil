@@ -73,6 +73,21 @@ describe CepFacil do
     address[:description].should eql("Coronel Camisão")
   end
 
+  it "support a different dictionary" do
+    cep = "79005-340"
+    dictionary = {
+      "tipo" => :type,
+      "cidade" => :city,
+      "bairro" => :district,
+      "cep" => :zipcode,
+      "descricao" => :street,
+      "uf" => :uf
+    }
+    address = CepFacil.get_address cep, @token, dictionary
+    address[:zipcode].should eql("79005340")
+    address[:uf].should eql("MS")
+    address[:district].should eql("Amambaí")
+  end
 =begin  
   it "has a working alternative usage" do
     include CepFacil
