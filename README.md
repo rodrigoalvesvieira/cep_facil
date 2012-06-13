@@ -86,10 +86,12 @@ Contributors
 
 * Adriano Bacha - abacha@gmail.com
 
+
 Thanks
 -------
 
 Huge thanks and cheers to CépFácil (http://cepfacil.com.br) of course. Thanks for the great service that you provide!
+
 
 Also, thanks to the [Contributors] of this project.
 
@@ -114,4 +116,4 @@ LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-[Contributors]: #ontributors
+[Contributors]: #contributors
