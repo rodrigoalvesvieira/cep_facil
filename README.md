@@ -59,6 +59,16 @@ There are three formats for one to store Brazilian zip codes (CEPs):
 
 CepFácil works with the three of them.
 
+### Using a custom dictionary
+```ruby
+dictionary = {
+  "cidade" => :city,
+  "descricao" => :street
+}
+address = CepFacil.get_address cep, token, dictionary
+address[:street] # Returns the street referent to that zip code
+```
+
 ### Displaying an address in full mode
 
 ```ruby
