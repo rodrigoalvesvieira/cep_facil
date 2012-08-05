@@ -6,7 +6,6 @@ require "net/http"
 module CepFacil
   class API
     attr_reader :cep, :type, :state, :city, :neighborhood, :street
-
     ## Obtenção de endereço atráves do CEP
     # retorna um objeto `CepFacil::API` que contem 6 métodos (propriedades):
     # cep, type, state, city, neighborhood e street.
@@ -33,14 +32,15 @@ module CepFacil
 
       result = response.body.split("&")
 
-      # TODO: Document everything
-      # TODO: Implement fallback for when CEP is non-existent/invalid.
-
-      @type = result[2].gsub!(pattern, "")
-      @state = result[3].gsub!(pattern, "")
-      @city = result[4].gsub!(pattern, "")
-      @neighborhood = result[5].gsub!(pattern, "")
-      @street = result[6].gsub!(pattern, "")
+      if result[2]
+        @type = result[2].gsub!(pattern, "")
+        @state = result[3].gsub!(pattern, "")
+        @city = result[4].gsub!(pattern, "")
+        @neighborhood = result[5].gsub!(pattern, "")
+        @street = result[6].gsub!(pattern, "")
+      else
+        return false
+      end
     end
 
     ##
