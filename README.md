@@ -53,6 +53,8 @@ address.street # => "Panelas"
 
 ```
 
+Embora isso deva parecer óbvio, informo que essas propriedades são todas **READONLY**.
+
 Adicionalmente, seu objeto `CepFacil::API` possui um método `full` que o descreve por extenso:
 
 ```ruby
