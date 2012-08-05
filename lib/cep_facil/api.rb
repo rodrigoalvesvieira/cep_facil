@@ -1,9 +1,15 @@
+# coding: utf-8
+
 require "cgi"
 require "net/http"
 
 module CepFacil
   class API
     attr_reader :cep, :type, :state, :city, :neighborhood, :street
+
+    ## Obtenção de endereço atráves do CEP
+    # retorna um objeto `CepFacil::API` que contem 6 métodos (propriedades):
+    # cep, type, state, city, neighborhood e street.
 
     def initialize(cep, token)
       @cep = cep
@@ -37,6 +43,9 @@ module CepFacil
       @street = result[6].gsub!(pattern, "")
     end
 
+    ##
+    # Descreve o endereço obtido, por extenso. i.e: "Rua Panelas, Paulista - PE, Brasil"
+    #
     def full_format
       "#{self.type} #{self.street}, #{self.city} - #{self.state}, Brasil"
     end
