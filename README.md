@@ -1,120 +1,106 @@
-CepFácil
-===========
+# CepFacil
 
-Wrapper Ruby for the service at cepfacil.com.br
+Ruby wrapper para o serviço em cepfacil.com.br
 
-Installation
-------------
+## Instalação
 
-In the `Gemfile`
+NOTA: Esse projeto encontra-se na versão 1.x, cuja API difere completamente das versões 0.x. Se você está procurando a versão mais antiga, veja a branch [0x], que se mantém intacta.
+
+No `Gemfile`:
 
 ```ruby
 gem "cep_facil"
+
 ```
 
-Or via RubyGems, directly:
+Ou via RubyGems, diretamente:
 
-  `gem install cep_facil`
+  `$ gem install cep_facil`
 
-CepFacil works only in Ruby 1.9.2 by default. If you need it to work with 1.8.7 you must do the following:
+## Uso
 
-In the `Gemfile`
-
-```ruby
-gem "cep_facil", :git => "git://github.com/rodrigoalvesvieira/cep_facil.git", :branch => "1.8.7"
-```
-
-Usage
------
-
-### Fetching an address by zip code
+### Obtendo um endereço pelo CEP
 
 ```ruby
+
 require "cep_facil"
+
 cep = "53417-540"
-token = "1234567890" # get yours at cepfacil.com.br
-address = CepFacil.get_address(cep, token)
-# Returns the address referent to that zip code.
-address[:city]
-# Returns the city referent to that zip code.
+
+token = "1234567890" # obtenha o seu em cepfacil.com.br
+
+address = CepFacil::API.new(cep, token)
+
 ```
 
-Alternatively, you can do:
+#### Retorna o endereço referente àquele CEP
+
+O retorno é um objeto `CepFacil::API` que contem 6 metodos (propriedades): cep, type, state, city, neighborhood, street. Assim você os acessa:
 
 ```ruby
-require "cep_facil"
-include CepFacil
-address = get_address cep, token
+
+address.cep # => "53417540"
+
+address.type # => "Rua"
+
+address.state # => "PE"
+
+address.city # => "Paulista"
+
+address.neighborhood # => "Artur Lundgren II"
+
+address.street # => "Panelas"
+
 ```
 
-The response is a Hash object that contains 6 keys: cep, type, state, city, neighborhood, description.
+Adicionalmente, seu objeto `CepFacil::API` possui um método `full` que o descreve por extenso:
 
-There are three formats for one to store Brazilian zip codes (CEPs):
+```ruby
+
+address.full_format # => "Rua Panelas, Paulista - PE, Brasil"
+
+```
+
+Existem três formatos possíveis para se armazenar CEPs:
 
 ```ruby
 "12345-678"
 "12345678"
-12345678   # I wouldn't use this one, really.
+12345678   # Eu realmente não usaria esse
 ```
 
-CepFácil works with the three of them.
+CepFacil funciona com esses três formatos.
 
-### Using a custom dictionary
-```ruby
-dictionary = {
-  "cidade" => :city,
-  "descricao" => :street
-}
-address = CepFacil.get_address cep, token, dictionary
-address[:street] # Returns the street referent to that zip code
-```
+## Integração com a gem Geocoder
 
-### Displaying an address in full mode
+A gem [Geocoder] é ótima para uso e manipulação de dados geográficos em projetos Ruby. Para integrá-la com o CepFacil, faça assim:
 
 ```ruby
-address = CepFacil.get_address(cep, token)
-CepFacil.full address
+
+geocoded_by address.full_format
+
 ```
 
-Or:
-
-````ruby
-require "cep_facil"
-include CepFacil
-
-address = get_address("50050-000", token)
-full(address) # => Rua da Aurora, Boa Vista, Recife-PE, Brasil.
-```
-
-Author
-------
+## Autor
 
 * Rodrigo Alves Vieira - rodrigovieira1994@gmail.com - http://www.rodrigoalvesvieira.com
 
-Contributors
-------------
+## Contribuintes
 
 * Adriano Bacha - abacha@gmail.com
 
+## Agradecimentos
 
-Thanks
--------
+Obrigado pelas pessoas que oferecem o serviço [CepFácil], sem o qual esse projeto não seria possível.
 
-Huge thanks and cheers to CépFácil (http://cepfacil.com.br) of course. Thanks for the great service that you provide!
+Obrigado também aos [Contribuintes] desse projeto.
 
+## Licença
 
-Also, thanks to the [Contributors] of this project.
+CepFacil é liberado sob a [licença do MIT] com atribuições a Rodrigo Alves Vieira.
 
-Licence
--------
-
-Copyright (c) 2012 Rodrigo Alves Vieira. http://www.rodrigoalvesvieira.com/
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-
-[Contributors]: #contributors
+[0x]: https://github.com/rodrigoalvesvieira/cep_facil/tree/0x
+[Geocoder]: https://github.com/alexreisner/geocoder
+[CepFácil]: http://cepfacil.com.br
+[Contribuintes]: #contributors
+[licença do MIT]: http://pt.wikipedia.org/wiki/Licen%C3%A7a_MIT#Texto_da_licen.C3.A7a
