@@ -21,13 +21,15 @@ Ou via RubyGems, diretamente:
 
 ### Obtendo um endereço pelo CEP
 
+Para usar a API do [CepFácil], você precisa obter um token do serviço. Você obtém esse token gratuitamente em cepfacil.com.br
+
 ```ruby
 
 require "cep_facil"
 
 cep = "53417-540"
 
-token = "1234567890" # obtenha o seu em cepfacil.com.br
+token = "1234567890"
 
 address = CepFacil::API.new(cep, token)
 
@@ -35,7 +37,7 @@ address = CepFacil::API.new(cep, token)
 
 #### Retorna o endereço referente àquele CEP
 
-O retorno é um objeto `CepFacil::API` que contem 6 metodos (propriedades): cep, type, state, city, neighborhood, street. Assim você os acessa:
+O retorno é um objeto `CepFacil::API` que contem 6 métodos (propriedades): cep, type, state, city, neighborhood, street. Assim você os acessa:
 
 ```ruby
 
@@ -87,7 +89,7 @@ geocoded_by address.full_format
 
 * Rodrigo Alves Vieira - rodrigovieira1994@gmail.com - http://www.rodrigoalvesvieira.com
 
-## Contribuintes
+## Contribuidores
 
 * Adriano Bacha - abacha@gmail.com
 
@@ -95,7 +97,7 @@ geocoded_by address.full_format
 
 Obrigado pelas pessoas que oferecem o serviço [CepFácil], sem o qual esse projeto não seria possível.
 
-Obrigado também aos [Contribuintes] desse projeto.
+Obrigado também aos [Contribuidores] desse projeto.
 
 ## Licença
 
@@ -104,5 +106,5 @@ CepFacil é liberado sob a [licença do MIT] com atribuições a Rodrigo Alves V
 [0x]: https://github.com/rodrigoalvesvieira/cep_facil/tree/0x
 [Geocoder]: https://github.com/alexreisner/geocoder
 [CepFácil]: http://cepfacil.com.br
-[Contribuintes]: #contribuintes
+[Contribuidores]: #contribuidores
 [licença do MIT]: http://pt.wikipedia.org/wiki/Licen%C3%A7a_MIT#Texto_da_licen.C3.A7a
