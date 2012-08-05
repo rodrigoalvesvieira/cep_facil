@@ -104,5 +104,5 @@ CepFacil é liberado sob a [licença do MIT] com atribuições a Rodrigo Alves V
 [0x]: https://github.com/rodrigoalvesvieira/cep_facil/tree/0x
 [Geocoder]: https://github.com/alexreisner/geocoder
 [CepFácil]: http://cepfacil.com.br
-[Contribuintes]: #contributors
+[Contribuintes]: #contribuintes
 [licença do MIT]: http://pt.wikipedia.org/wiki/Licen%C3%A7a_MIT#Texto_da_licen.C3.A7a
