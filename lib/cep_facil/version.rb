@@ -1,3 +1,3 @@
 module CepFacil
-  VERSION = "1.0.1" #:nodoc:
+  VERSION = "1.0.2" #:nodoc:
 end

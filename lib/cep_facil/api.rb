@@ -1,53 +1,36 @@
-# coding: utf-8
-
-require "cgi"
+# encoding: utf-8
 require "net/http"
 
 module CepFacil
   class API
-    attr_reader :cep, :type, :state, :city, :neighborhood, :street
-    ## Obtenção de endereço atráves do CEP
-    # retorna um objeto `CepFacil::API` que contem 6 métodos (propriedades):
-    # cep, type, state, city, neighborhood e street.
+    attr_reader :read
+    
+    BASE_URL = "http://www.cepfacil.com.br/service/?filiacao=%s&cep=%s&formato=%s"
+    METHODS_PLACEHOLDER = {:estado => :uf , :type => :tipo , :state => :uf , :city => :cidade , :neighborhood => :bairro , :street => :descricao , :rua => :descricao}
 
-    def initialize(cep, token)
-      @cep = cep
-      @token = token
+    def initialize(*args)
+      args = (args[0].is_a?(Hash) ? args[0] : Hash[[:cep,:token,:format].zip(args)])
+      args[:format] ||= "texto"
+      args[:cep] = args[:cep].to_s.gsub(/([^0-9]+)/,"")[0...8]            # Removing all non-numeric caracters and limit to 8 caracters
 
-      zip_code = @cep.to_s
-
-      if zip_code.match(/^[0-9]{5}[-]?[0-9]{3}/)
-        zip_code.gsub!("-", "")
-        @uri = URI.parse "http://www.cepfacil.com.br/service/?filiacao=#{token}&cep=#{zip_code}&formato=texto"
-      else
-        @uri = URI.parse "http://www.cepfacil.com.br/service/?filiacao=#{token}&cep=#{zip_code}&formato=texto"
-      end
-
-      http = Net::HTTP.new(@uri.host, @uri.port)
-      call = Net::HTTP::Get.new(@uri.request_uri)
-
-      response = http.request(call)
-
-      pattern = /^([a-z]+)\=/
-
-      result = response.body.split("&")
-
-      if result[2]
-        @type = result[2].gsub!(pattern, "")
-        @state = result[3].gsub!(pattern, "")
-        @city = result[4].gsub!(pattern, "")
-        @neighborhood = result[5].gsub!(pattern, "")
-        @street = result[6].gsub!(pattern, "")
-      else
-        return false
-      end
+      uri = URI(BASE_URL % [args[:token],args[:cep],args[:format]])      
+      @read = Net::HTTP.get(uri)
+      @data = args[:format].to_s == "texto" ? Hash[@read.split("&").map { |i| i.split("=") } ] : @read  # Need a better implementation
+      return self
     end
-
-    ##
-    # Descreve o endereço obtido, por extenso. i.e: "Rua Panelas, Paulista - PE, Brasil"
-    #
+    def valid?
+      @data.is_a?(Hash) and @data.size > 1
+    end
     def full_format
-      "#{self.type} #{self.street}, #{self.city} - #{self.state}, Brasil"
+      "#{type} #{street}, #{city} - #{state}, Brasil"
     end
+    def self.get(*args)
+      self.new(*args)
+    end
+    private
+    def method_missing(*args)
+      return (@data[METHODS_PLACEHOLDER[args[0].to_sym].to_s] || @data[args[0].to_s]).force_encoding(Encoding::UTF_8) || super(*args) 
+    end
+    alias :adress :full_format
   end
 end

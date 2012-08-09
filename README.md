@@ -4,7 +4,7 @@ Ruby wrapper para o serviço em cepfacil.com.br
 
 ## Instalação
 
-NOTA: Esse projeto encontra-se na versão 1.x, cuja API difere completamente das versões 0.x. Se você está procurando a versão mais antiga, veja a branch [0x], que se mantém intacta.
+**NOTA:** Esse projeto encontra-se na versão 1.x, cuja API difere completamente das versões 0.x. Se você está procurando a versão mais antiga, veja a branch [0x], que se mantém intacta.
 
 No `Gemfile`:
 
@@ -33,13 +33,22 @@ token = "1234567890"
 
 address = CepFacil::API.new(cep, token)
 
+### Acesso rapido via metodo de classe
+
+adress = CepFacil::API.get(cep, token) # Hash Notation => CepFacil::API.get(cep: cep, token: token)
+
+# Argumentos como Hashes
+
+adress = CepFacil::API.new(cep: cep, token: token, format: "texto")
+
 ```
 
 #### Retorna o endereço referente àquele CEP
 
-O retorno é um objeto `CepFacil::API` que contem 6 métodos (propriedades): cep, type, state, city, neighborhood, street. Assim você os acessa:
+O retorno é um objeto `CepFacil::API` que contem os seguintes métodos (propriedades) : 
 
 ```ruby
+
 
 address.cep # => "53417540"
 
@@ -53,27 +62,39 @@ address.neighborhood # => "Artur Lundgren II"
 
 address.street # => "Panelas"
 
+adress.valid? # => true
+
+# Também é possivel acessar utilizando metodos em 'português'
+
+adress.tipo   # => "Avenida"	
+adress.rua    # => "Francisco Navarro"	
+adress.cidade # => "Varginha"	
+adress.bairro # => "Centro"	
+adress.estado # => "MG"	
+adress.uf     # => "MG"	
+
 ```
 
 Embora isso deva parecer óbvio, informo que essas propriedades são todas **READONLY**.
 
-Adicionalmente, seu objeto `CepFacil::API` possui um método `full` que o descreve por extenso:
+Adicionalmente, seu objeto `CepFacil::API` possui um método `full_format` que o descreve por extenso:
 
 ```ruby
 
-address.full_format # => "Rua Panelas, Paulista - PE, Brasil"
+address.full_format # => "Rua Panelas, Paulista - PE, Brasil"		
+adress.full_adress  # => Avenida Francisco Navarro, Varginha - MG, Brasil"  # Alias
 
 ```
-
-Existem três formatos possíveis para se armazenar CEPs:
+Você pode passar o CEP como uma string qualquer, letras, caracteres especiais(pontos,hifens) são removidos automaticamente.
 
 ```ruby
-"12345-678"
-"12345678"
-12345678   # Eu realmente não usaria esse
-```
 
-CepFacil funciona com esses três formatos.
+"12345-678"	
+"123.45.678"	
+"123-456.78"	
+"12345678"	
+12345678   # Não recomendado, prefira utilizar Strings
+```
 
 ## Integração com a gem Geocoder
 
@@ -92,6 +113,7 @@ geocoded_by address.full_format
 ## Contribuidores
 
 * Adriano Bacha - abacha@gmail.com
+* Rafael Fidelis - rafa_fidelis@yahoo.com.br | http://defidelis.com
 
 ## Agradecimentos
 
