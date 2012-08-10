@@ -31,6 +31,6 @@ module CepFacil
     def method_missing(*args)
       return (@data[METHODS_PLACEHOLDER[args[0].to_sym].to_s] || @data[args[0].to_s]).force_encoding(Encoding::UTF_8) || super(*args) 
     end
-    alias :adress :full_format
+    alias :address :full_format
   end
 end
