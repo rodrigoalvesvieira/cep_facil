@@ -64,7 +64,7 @@ address.street # => "Panelas"
 
 address.valid? # => true
 
-# Também é possivel acessar utilizando metodos em 'português'
+# Também é possivel acessar utilizando metodos em português
 
 address.tipo   # => "Avenida"	
 address.rua    # => "Francisco Navarro"	
@@ -85,7 +85,7 @@ address.full_format # => "Rua Panelas, Paulista - PE, Brasil"
 address.full_address  # => Avenida Francisco Navarro, Varginha - MG, Brasil"  # Alias
 
 ```
-Você pode passar o CEP como uma string qualquer, letras, caracteres especiais(pontos,hifens) são removidos automaticamente.
+Você pode passar o CEP como uma string qualquer, letras, caracteres especiais (pontos, hífens) são removidos automaticamente.
 
 ```ruby
 
