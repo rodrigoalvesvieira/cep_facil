@@ -35,11 +35,11 @@ address = CepFacil::API.new(cep, token)
 
 ### Acesso rapido via metodo de classe
 
-adress = CepFacil::API.get(cep, token) # Hash Notation => CepFacil::API.get(cep: cep, token: token)
+address = CepFacil::API.get(cep, token) # Hash Notation => CepFacil::API.get(cep: cep, token: token)
 
 # Argumentos como Hashes
 
-adress = CepFacil::API.new(cep: cep, token: token, format: "texto")
+address = CepFacil::API.new(cep: cep, token: token, format: "texto")
 
 ```
 
@@ -62,16 +62,16 @@ address.neighborhood # => "Artur Lundgren II"
 
 address.street # => "Panelas"
 
-adress.valid? # => true
+address.valid? # => true
 
 # Também é possivel acessar utilizando metodos em 'português'
 
-adress.tipo   # => "Avenida"	
-adress.rua    # => "Francisco Navarro"	
-adress.cidade # => "Varginha"	
-adress.bairro # => "Centro"	
-adress.estado # => "MG"	
-adress.uf     # => "MG"	
+address.tipo   # => "Avenida"	
+address.rua    # => "Francisco Navarro"	
+address.cidade # => "Varginha"	
+address.bairro # => "Centro"	
+address.estado # => "MG"	
+address.uf     # => "MG"	
 
 ```
 
@@ -82,7 +82,7 @@ Adicionalmente, seu objeto `CepFacil::API` possui um método `full_format` que o
 ```ruby
 
 address.full_format # => "Rua Panelas, Paulista - PE, Brasil"		
-adress.full_adress  # => Avenida Francisco Navarro, Varginha - MG, Brasil"  # Alias
+address.full_address  # => Avenida Francisco Navarro, Varginha - MG, Brasil"  # Alias
 
 ```
 Você pode passar o CEP como uma string qualquer, letras, caracteres especiais(pontos,hifens) são removidos automaticamente.
