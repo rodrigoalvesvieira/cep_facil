@@ -1,6 +1,6 @@
 # CepFacil
 
-Ruby wrapper para o serviço em cepfacil.com.br
+Ruby wrapper para o serviço em [cepfacil.com.br]
 
 ## Instalação
 
@@ -33,7 +33,7 @@ token = "1234567890"
 
 address = CepFacil::API.new(cep, token)
 
-### Acesso rapido via metodo de classe
+### Acesso rápido via método de classe
 
 address = CepFacil::API.get(cep, token) # Hash Notation => CepFacil::API.get(cep: cep, token: token)
 
@@ -142,5 +142,6 @@ CepFacil é liberado sob a [licença do MIT] com atribuições a Rodrigo Alves V
 [0x]: https://github.com/rodrigoalvesvieira/cep_facil/tree/0x
 [Geocoder]: https://github.com/alexreisner/geocoder
 [CepFácil]: http://cepfacil.com.br
+[cepfacil.com.br]: http://cepfacil.com.br
 [Contribuidores]: #contribuidores
 [licença do MIT]: http://pt.wikipedia.org/wiki/Licen%C3%A7a_MIT#Texto_da_licen.C3.A7a
