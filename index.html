@@ -18,13 +18,13 @@
 
       <header>
         <h1>CepFacil</h1>
-        <p>Wrapper Ruby para o serviço cepfacil.com.br</p>
+        <p>Wrapper Ruby para o serviço <a href="http://cepfacil.com.br">cepfacil.com.br</a></p>
       </header>
 
       <div id="banner">
         <span id="logo"></span>
 
-        <a href="https://github.com/rodrigoalvesvieira/cep_facil" class="button fork"><strong>View On GitHub</strong></a>
+        <a href="https://github.com/rodrigoalvesvieira/cep_facil" class="button fork"><strong>Ver no GitHub</strong></a>
         <div class="downloads">
           <span>Downloads:</span>
           <ul>
@@ -68,9 +68,11 @@ address = CepFacil::API.new(cep, token)
 
 <h4>Retorna o endereço referente àquele CEP</h4>
 
-<p>O retorno é um objeto CepFacil::API que contem 6 métodos (propriedades): cep, type, state, city, neighborhood, street. Assim você os acessa:</p>
+<p>O retorno é um objeto `CepFacil::API` que contem os seguintes métodos (propriedades):</p>
 
 <pre><code>address.cep # => "53417540"
+
+address.cep # => "53417540"
 
 address.type # => "Rua"
 
@@ -81,25 +83,53 @@ address.city # => "Paulista"
 address.neighborhood # => "Artur Lundgren II"
 
 address.street # => "Panelas"
+
+# Também é possivel acessar utilizando metodos em português
+
+address.tipo   # => "Avenida"
+
+address.rua    # => "Francisco Navarro"
+
+address.cidade # => "Varginha"
+
+address.bairro # => "Centro"
+
+address.estado # => "MG"
+
+address.uf     # => "MG"
+
 </code></pre>
 
 <p>Embora isso deva parecer óbvio, informo que essas propriedades são todas <b>READONLY</b>.</p>
 
-<p>Adicionalmente, seu objeto CepFacil::API possui um método full que o descreve por extenso:</p>
+<p>Você pode checar se o endereço retornado é válido utilizando o método `valid?`:</p>
+
+<pre><code>address = CepFacil::API.new "53020-140", token
+
+address.valid? # true
+
+</code></pre>
+
+<p>Adicionalmente, seu objeto `CepFacil::API` possui um método `full_format` e seu alias (`full_address`) que o descreve por extenso:</p>
 
 <pre><code>address.full_format # => "Rua Panelas, Paulista - PE, Brasil"
+
+address.full_address  # => Avenida Francisco Navarro, Varginha - MG, Brasil"  # Alias
+
 </code></pre>
 
-<p>Existem três formatos possíveis para se armazenar CEPs:</p>
+<p>Você pode passar o CEP como uma string qualquer, letras, caracteres especiais (pontos, hífens) são removidos automaticamente.</p>
 
-<pre><code>"12345-678" # String com hífen
+<pre><code>"12345-678"
 
-"12345678" # String sem hífen
+"123.45.678"
 
-12345678   # Inteiro: eu realmente não usaria esse
+"123-456.78"
+
+"12345678"
+
+12345678   # Não recomendado, prefira utilizar Strings
 </code></pre>
-
-<p>CepFacil funciona com esses três formatos.</p>
 
 <h3>Integração com a gem Geocoder</h3>
 
@@ -116,6 +146,8 @@ address.street # => "Panelas"
 
 <ul>
   <li>Adriano Bacha - abacha [arroba] gmail [ponto] com</li>
+  <li>Rafael Fidelis - rafa_fidelis [arroba] yahoo [ponto] com [ponto] br | http://defidelis.com
+</li>
 </ul>
 
 <h3>Agradecimentos</h3>
