@@ -45,7 +45,7 @@ address = CepFacil::API.new(cep: cep, token: token, format: "texto")
 
 #### Retorna o endereço referente àquele CEP
 
-O retorno é um objeto `CepFacil::API` que contem os seguintes métodos (propriedades) : 
+O retorno é um objeto `CepFacil::API` que contem os seguintes métodos (propriedades) :
 
 ```ruby
 
@@ -62,26 +62,40 @@ address.neighborhood # => "Artur Lundgren II"
 
 address.street # => "Panelas"
 
-address.valid? # => true
-
 # Também é possivel acessar utilizando metodos em português
 
-address.tipo   # => "Avenida"	
-address.rua    # => "Francisco Navarro"	
-address.cidade # => "Varginha"	
-address.bairro # => "Centro"	
-address.estado # => "MG"	
-address.uf     # => "MG"	
+address.tipo   # => "Avenida"
+
+address.rua    # => "Francisco Navarro"
+
+address.cidade # => "Varginha"
+
+address.bairro # => "Centro"
+
+address.estado # => "MG"
+
+address.uf     # => "MG"
 
 ```
 
 Embora isso deva parecer óbvio, informo que essas propriedades são todas **READONLY**.
 
-Adicionalmente, seu objeto `CepFacil::API` possui um método `full_format` que o descreve por extenso:
+Você pode checar se o endereço retornado é válido utilizando o método `valid?`:
 
 ```ruby
 
-address.full_format # => "Rua Panelas, Paulista - PE, Brasil"		
+address = CepFacil::API.new "53020-140", token
+
+address.valid? # true
+
+```
+
+Adicionalmente, seu objeto `CepFacil::API` possui um método `full_format` e seu alias (`full_address`) que o descreve por extenso:
+
+```ruby
+
+address.full_format # => "Rua Panelas, Paulista - PE, Brasil"
+
 address.full_address  # => Avenida Francisco Navarro, Varginha - MG, Brasil"  # Alias
 
 ```
@@ -89,10 +103,10 @@ Você pode passar o CEP como uma string qualquer, letras, caracteres especiais (
 
 ```ruby
 
-"12345-678"	
-"123.45.678"	
-"123-456.78"	
-"12345678"	
+"12345-678"
+"123.45.678"
+"123-456.78"
+"12345678"
 12345678   # Não recomendado, prefira utilizar Strings
 ```
 
