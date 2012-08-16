@@ -2,6 +2,8 @@
 
 Ruby wrapper para o serviço em [cepfacil.com.br]
 
+[![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/rodrigoalvesvieira/cep_facil)
+
 ## Instalação
 
 **NOTA:** Esse projeto encontra-se na versão 1.x, cuja API difere completamente das versões 0.x. Se você está procurando a versão mais antiga, veja a branch [0x], que se mantém intacta.
