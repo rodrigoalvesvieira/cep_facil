@@ -3,6 +3,7 @@
 Ruby wrapper para o serviço em [cepfacil.com.br]
 
 [![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/rodrigoalvesvieira/cep_facil)
+[![Build Status](https://secure.travis-ci.org/rodrigoalvesvieira/cep_facil.png?branch=master)](http://travis-ci.org/rodrigoalvesvieira/cep_facil)
 
 ## Instalação
 
