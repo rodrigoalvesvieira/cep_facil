@@ -93,6 +93,20 @@ address.valid? # true
 
 ```
 
+Você também pode checar se o endereço foi encontrado com o CEP passado da seguinte forma:
+
+```ruby
+
+address = CepFacil::API.new "53417-540", token
+
+address.found? # true
+
+address = CepFacil::API.new "00000000", token
+
+address.valid? # false
+
+```
+
 Adicionalmente, seu objeto `CepFacil::API` possui um método `full_format` e seu alias (`full_address`) que o descreve por extenso:
 
 ```ruby
