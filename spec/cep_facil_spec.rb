@@ -64,5 +64,17 @@ describe CepFacil do
     address.street.should eql("Coronel Camisão")
   end
 
+  it "can tell a found address from a not found one" do
+
+    ceps = [{zip_code: "79005-340", found: true}, {zip_code: "00000-000", found: false}]
+
+    ceps.each do |cep|
+      address = CepFacil::API.new(cep[:zip_code], @token)
+      address.found?.should == cep[:found]
+    end
+
+
+  end
+
 end
 
