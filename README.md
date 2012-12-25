@@ -152,6 +152,11 @@ Obrigado pelas pessoas que oferecem o serviço [CepFácil], sem o qual esse proj
 
 Obrigado também aos [Contribuidores] desse projeto.
 
+## Doações
+
+Se esse projeto é tão útil para você que lhe faz considerar fazer alguma doação, ao invés de me pagar uma cerveja
+(o que seria um boa ideia, com certeza) considere doar para o [Khan Academy].
+
 ## Licença
 
 CepFacil é liberado sob a [licença do MIT] com atribuições a Rodrigo Alves Vieira.
@@ -162,3 +167,4 @@ CepFacil é liberado sob a [licença do MIT] com atribuições a Rodrigo Alves V
 [cepfacil.com.br]: http://cepfacil.com.br
 [Contribuidores]: #contribuidores
 [licença do MIT]: http://pt.wikipedia.org/wiki/Licen%C3%A7a_MIT#Texto_da_licen.C3.A7a
+[Khan Academy]: https://www.khanacademy.org/
