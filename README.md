@@ -139,7 +139,7 @@ geocoded_by address.full_format
 
 ## Autor
 
-* Rodrigo Alves Vieira - rodrigovieira1994@gmail.com - http://www.rodrigoalvesvieira.com
+* Rodrigo Alves - rodrigovieira1994@gmail.com - http://www.rodrigoalvesvieira.com
 
 ## Contribuidores
 
@@ -159,7 +159,7 @@ Se esse projeto é tão útil para você que lhe faz considerar fazer alguma doa
 
 ## Licença
 
-CepFacil é liberado sob a [licença do MIT] com atribuições a Rodrigo Alves Vieira.
+CepFacil é liberado sob a [licença do MIT] com atribuições a Rodrigo Alves.
 
 [0x]: https://github.com/rodrigoalvesvieira/cep_facil/tree/0x
 [Geocoder]: https://github.com/alexreisner/geocoder
