@@ -1,5 +1,5 @@
 #--
-# Copyright (c) 2012 Rodrigo Alves Vieira
+# Copyright (c) 2012-2013 Rodrigo Alves
 #
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
@@ -22,6 +22,7 @@
 #++
 
 require "cep_facil/version"
+
 module CepFacil
   autoload :API, "cep_facil/api"
 end

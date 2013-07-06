@@ -1,11 +1,58 @@
-# encoding: utf-8
+#--
+# Copyright (c) 2012-2013 Rodrigo Alves
+#
+# Permission is hereby granted, free of charge, to any person obtaining
+# a copy of this software and associated documentation files (the
+# "Software"), to deal in the Software without restriction, including
+# without limitation the rights to use, copy, modify, merge, publish,
+# distribute, sublicense, and/or sell copies of the Software, and to
+# permit persons to whom the Software is furnished to do so, subject to
+# the following conditions:
+#
+# The above copyright notice and this permission notice shall be
+# included in all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+# EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+# MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+# NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+# LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+# OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+# WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+#++
+
 require "net/http"
+require "json"
 
 module CepFacil
-  class API
-    attr_reader :read
+  class Address
+    attr_accessor :zip_code, :type, :city, :state, :neighborhood, :street
 
-    BASE_URL = "http://www.cepfacil.com.br/service/?filiacao=%s&cep=%s&formato=%s"
+    def initialize(zip_code, type, city, state, neighborhood, street)
+      @zip_code = zip_code
+      @type = type
+      @city = city
+      @state = state
+      @neighborhood = neighborhood
+      @street = street
+    end
+
+    def valid?
+      answ = false
+      answ = true if (self.zip_code && type && city)
+      return true
+    end
+
+    # Returns the address in its extense format
+    def full_format
+      "#{self.type} #{self.street}, #{self.city} - #{self.state} #{self.zip_code}, Brasil"
+    end
+  end
+
+  class API
+    attr_accessor :token
+
+    BASE_URL = "http://www.cepfacil.com.br/service/?filiacao=%s&cep=%s&formato=json"
     PLACEHOLDER_METHODS = {
       estado: :uf,
       type: :tipo,
@@ -24,47 +71,20 @@ module CepFacil
       end
     end
 
-    def initialize(*args)
-      args = (args[0].is_a?(Hash) ? args[0] : Hash[[:cep,:token,:format].zip(args)])
-      args[:format] ||= "texto"
-      args[:cep] = CepFacil::API.parse_zip_code(args[:cep])
-
-      uri = URI(BASE_URL % [args[:token], args[:cep], args[:format]])
-      @read = Net::HTTP.get(uri)
-      @data = args[:format].to_s == "texto" ? Hash[@read.split("&").map { |i| i.split("=") } ] : @read
-
-      # OPTIMIZE: Need a better implementation
-      return self
+    def initialize(token)
+      @token = token
     end
 
-    # Returns true if the address in question is a valid one
-    # returns false otherwise
-    def valid?
-      @data.is_a?(Hash) and @data.size > 1
+    def get_address(zip_code)
+      uri = URI(BASE_URL % [self.token, CepFacil::API.parse_zip_code(zip_code)])
+      content = Net::HTTP.get(uri)
+
+      result = JSON.parse content
+
+      address = CepFacil::Address.new(
+        result["CEP"], result["LogradouroTipo"],
+        result["Cidade"], result["UF"], result["Bairro"], result["Logradouro"])
     end
 
-    # Returns the address in its extense format
-    def full_format
-      "#{type} #{street}, #{city} - #{state}, Brasil"
-    end
-
-    # Returns true if the address was found with the given zip code (CEP)
-    # returns false otherwise
-    def found?
-      self.status == "encontrado"
-    end
-
-    def self.get(*args)
-      self.new(*args)
-    end
-
-    private
-    # Define placeholder methods for the address attributes
-    # in pt-BR
-    def method_missing(*args)
-      return (@data[PLACEHOLDER_METHODS[args[0].to_sym].to_s] || @data[args[0].to_s]).force_encoding(Encoding::UTF_8) || super(*args)
-    end
-
-    alias :address :full_format
   end
 end
